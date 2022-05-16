@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% set active_page = "login" %}
+
+{% block title %}Two Forms{% endblock %}
+
+{% block head %}
+{{ super() }}
+
+
+{% endblock %}
+
+{% block page_content %}
+<h3 class="cap"></h1>
+<form action="/login" method="post">
+    <label for="email">Email:</label>
+    <input type="email" id="email" placeholder="Enter email" name="email">
+    <label for="pwd">Password:</label>
+    <input type="password" id="pwd" placeholder="Enter password" name="pswd">
+    <label>
+      <input type="checkbox" name="remember"> Remember me
+    </label>
+    <button type="submit">Submit</button>
+</form>
+
+
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+
+
+{% endblock %}
