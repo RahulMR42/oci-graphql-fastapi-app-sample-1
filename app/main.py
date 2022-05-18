@@ -21,7 +21,7 @@ app.include_router(login.router)
 @app.get("/", response_class=HTMLResponse)
 async def home(request: Request):
     data = openfile("home.md")
-    return templates.TemplateResponse("page.html", {"request": request, "data": data})
+    return templates.TemplateResponse("page.html", {"request": request, "data": data, "result" : "mr" })
 
 
 @app.get("/page/{page_name}", response_class=HTMLResponse)

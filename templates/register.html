@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% set active_page = "twoforms" %}
 
-{% block title %}Two Forms{% endblock %}
+{% block title %}Openworld 2022{% endblock %}
 
 {% block head %}
 {{ super() }}
@@ -29,6 +29,14 @@
 
 {% block scripts %}
 {{ super() }}
-
+    <footer>
+        <details>
+            <summary>
+                <span class="icon">👇</span>
+            </summary>
+            &nbsp Type : Mutation / URL : core.graphql <br>
+            &nbsp REST Ep: POST /register & GET /login/{mailId}
+        </details>
+    </footer>
 
 {% endblock %}
