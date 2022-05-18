@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% set active_page = "admin" %}
+
+{% block title %}Admin{% endblock %}
+
+{% block head %}
+{{ super() }}
+{% endblock %}
+
+{% block page_content %}
+<h5>Admin View</h5>
+<details>
+    <summary>List of Attendees </summary>
+    <pre>
+     {{query_result}}
+   </pre>
+</details>
+
+<!--<form action="/admin" method="get">-->
+<!--      <input type="submit">-->
+<!--</form>-->
+
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+
+
+{% endblock %}
