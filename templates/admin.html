@@ -16,6 +16,20 @@
    </pre>
 </details>
 
+<details>
+    <summary>Admin Queries</summary>
+      <form action="/admin/" method="post">
+        <input type="text" name="query_text" id="query_text" >
+
+        <input type="submit">
+   </form>
+
+    {% if query_text %}
+    {{ admin_query_result }}
+    {% endif %}
+
+</details>
+
 <!--<form action="/admin" method="get">-->
 <!--      <input type="submit">-->
 <!--</form>-->
