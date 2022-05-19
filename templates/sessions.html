@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% set active_page = "twoforms" %}
+
+{% block title %}Openworld 2022{% endblock %}
+
+{% block head %}
+{{ super() }}
+
+
+{% endblock %}
+
+{% block page_content %}
+ {% if status == "Success" %}
+
+
+       <img src="{{ url_for('static', path='/images/thankyou.png') }}" width=30% height=30%></img>
+       <small>Congratulations - {{fname}} {{lname}} , your registration is accepted  </small><br>
+    <footer>
+        <details>
+            <summary>
+                <span class="icon">👇</span>
+            </summary>
+            <pre>
+                {{mutation_add_attendees}}
+            </pre>
+            </details>
+    </footer>
+
+    {% endif %}
+    {% endblock %}
+
+    {% block scripts %}
+    {{ super() }}
+
+    {% endblock %}

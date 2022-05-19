@@ -34,11 +34,12 @@ def post_register(request: Request, email: str = Form(...),
                                     {fname lname}}""" %(fname,lname,email,country,pwd)
     gql_object = graphql(url)
     add_attendees_result = gql_object.mutation(mutation_add_attendees)
+    mutation_add_attendees=mutation_add_attendees.replace(pwd,"****")
     if (add_attendees_result['data']['createAteendees'] == None ):
         status = "Error"
         message = "New user registration failed!"
         details = add_attendees_result['errors'][0]['message']
-        mutation_add_attendees=mutation_add_attendees.replace(pwd,"****")
         return templates.TemplateResponse('register.html', context={'request': request, 'status': status,'message':message,'details':details,'mutation_add_attendees':mutation_add_attendees})
     else:
-        return templates.TemplateResponse('register.html', context={'request': request, 'result': email})
+        status = "Success"
+        return templates.TemplateResponse('sessions.html', context={'status':status,'request': request, 'fname': fname,'lname':lname,'mutation_add_attendees':mutation_add_attendees})
