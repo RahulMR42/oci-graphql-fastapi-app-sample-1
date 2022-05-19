@@ -18,14 +18,20 @@
 
 <details>
     <summary>Admin Queries</summary>
+
+
       <form action="/admin/" method="post">
         <input type="text" name="query_text" id="query_text" >
 
         <input type="submit">
    </form>
 
-    {% if query_text %}
+    {% if admin_query_result %}
+    <h4>
+    <pre>
     {{ admin_query_result }}
+    </pre>
+    </h4>
     {% endif %}
 
 </details>

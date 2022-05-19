@@ -10,33 +10,35 @@
 {% endblock %}
 
 {% block page_content %}
-<h3 class="cap">Register to Explore</h3>
-{% if email %}
-<h2>Registerd user {{result}}.</h2>
-{% endif %}
+<h4 class="cap">Register to Explore</h4>
+
 <h3 class="cap"></h1>
     <form action="/register" method="post">
-        <label for="fname">First name:</label>     <input  id="fname" placeholder="Enter Firstname" name="fname">
-        <label for="fname">Last Name:</label>     <input  id="lname" placeholder="Enter Lastname" name="lname">
-        <label for="fname">Country:</label>     <input  id="country" placeholder="Country" name="country">
-        <label for="email">Email:</label>     <input type="email" id="email" placeholder="Enter email" name="email">
-        <label for="pwd">Password:</label>    <input type="password" id="pwd" placeholder="Enter password" name="pswd">
+        <label for="fname">First name:</label>     <input  id="fname" placeholder="Enter Firstname" name="fname" required="required">
+        <label for="fname">Last Name:</label>     <input  id="lname" placeholder="Enter Lastname" name="lname" required="required">
+        <label for="fname">Country:</label>     <input  id="country" placeholder="Country" name="country" required="required">
+        <label for="email">Email:</label>     <input type="email" id="email" placeholder="Enter email" name="email" required="required">
+        <label for="pwd">Password:</label>    <input type="password" id="pwd" placeholder="Enter password" name="pwd" required="required">
          <center> <br><br> <button type="submit">Register</button> </center>
     </form>
-    
 
-{% endblock %}
+    {% if status == "Error" %}
+    <img src="{{ url_for('static', path='/images/gonewrong.png') }}" width=30% height=30%></img>
+     <small><font color="red">[Failed]</font> {{message}} .Please re-try. </small>
 
-{% block scripts %}
-{{ super() }}
     <footer>
         <details>
             <summary>
                 <span class="icon">👇</span>
             </summary>
-            &nbsp Type : Mutation / URL : core.graphql <br>
-            &nbsp REST Ep: POST /register & GET /login/{mailId}
+            Details : {{details}}
         </details>
     </footer>
+
+    {% endif %}
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
 
 {% endblock %}
