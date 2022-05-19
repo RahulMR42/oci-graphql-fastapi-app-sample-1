@@ -29,18 +29,16 @@ def post_register(request: Request, email: str = Form(...),
                   ):
     url = "http://iehh5vzwre6z5kja.rxn.graphql.us-phoenix-1.oci.customer-oci.com/graphql"
     mutation_add_attendees="""mutation{
-    createAteendees(input:
-    {fname:"%s",lname:"%s",mailid:"%s",country:"%s",pwd:"%s"})
-    {
-    fname
-    lname
-    }}""" %(fname,lname,email,country,pwd)
+                                    createAteendees(input:
+                                    {fname:"%s",lname:"%s",mailid:"%s",country:"%s",pwd:"%s"})
+                                    {fname lname}}""" %(fname,lname,email,country,pwd)
     gql_object = graphql(url)
     add_attendees_result = gql_object.mutation(mutation_add_attendees)
     if (add_attendees_result['data']['createAteendees'] == None ):
         status = "Error"
         message = "New user registration failed!"
         details = add_attendees_result['errors'][0]['message']
-        return templates.TemplateResponse('register.html', context={'request': request, 'status': status,'message':message,'details':details})
+        mutation_add_attendees.replace(pwd,"****")
+        return templates.TemplateResponse('register.html', context={'request': request, 'status': status,'message':message,'details':details,'mutation_add_attendees':mutation_add_attendees})
     else:
         return templates.TemplateResponse('register.html', context={'request': request, 'result': email})

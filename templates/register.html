@@ -23,14 +23,19 @@
     </form>
 
     {% if status == "Error" %}
+    <center>
+    <small><font color="red">[Failed]</font> {{message}} .Please re-try. </small><br>
     <img src="{{ url_for('static', path='/images/gonewrong.png') }}" width=30% height=30%></img>
-     <small><font color="red">[Failed]</font> {{message}} .Please re-try. </small>
+    </center>
 
     <footer>
         <details>
             <summary>
                 <span class="icon">👇</span>
             </summary>
+            <pre>
+                {{mutation_add_attendees}}
+            </pre>
             Details : {{details}}
         </details>
     </footer>
