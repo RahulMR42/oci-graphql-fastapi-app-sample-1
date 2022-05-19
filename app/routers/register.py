@@ -38,7 +38,7 @@ def post_register(request: Request, email: str = Form(...),
         status = "Error"
         message = "New user registration failed!"
         details = add_attendees_result['errors'][0]['message']
-        mutation_add_attendees.replace(pwd,"****")
+        mutation_add_attendees=mutation_add_attendees.replace(pwd,"****")
         return templates.TemplateResponse('register.html', context={'request': request, 'status': status,'message':message,'details':details,'mutation_add_attendees':mutation_add_attendees})
     else:
         return templates.TemplateResponse('register.html', context={'request': request, 'result': email})
