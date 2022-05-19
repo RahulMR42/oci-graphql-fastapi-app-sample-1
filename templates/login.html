@@ -15,20 +15,33 @@
     <label for="email">Email:</label>
     <input type="email" id="email" placeholder="Enter email" name="email">
     <label for="pwd">Password:</label>
-    <input type="password" id="pwd" placeholder="Enter password" name="pswd">
+    <input type="password" id="pwd" placeholder="Enter password" name="pwd">
     <label>
       <input type="checkbox" name="remember"> Remember me
     </label>
     <button type="submit">Submit</button>
 </form>
 
+    {% if status == "Invalid" %}
+    <center>
+        <br><small><font color="red">[Invalid]</font> {{message}} .Please re-try. </small><br>
+        <img src="{{ url_for('static', path='/images/gonewrong.png') }}" width=30% height=30%></img>
+    </center>
+    {% endif %}
+
+    {% if status == "Wrong" %}
+    <center>
+        <br><small><font color="orange">[Wrong]</font> {{message}} .Please re-try. </small><br>
+        <img src="{{ url_for('static', path='/images/wrongpassword.png') }}" width=30% height=30%></img>
+    </center>
+    {% endif %}
+
     <footer>
         <details>
             <summary>
                 <span class="icon">👇</span>
             </summary>
-            &nbsp Type : Query / URL : core.graphql <br>
-            &nbsp REST Ep: POST /login & GET /login/{mailId}
+            {{login_query}}
         </details>
     </footer>
 

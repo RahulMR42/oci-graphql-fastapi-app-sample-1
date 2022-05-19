@@ -21,7 +21,7 @@ async def register(request: Request):
 
 
 @router.post("/register", response_class=HTMLResponse)
-def post_register(request: Request, email: str = Form(...),
+async def post_register(request: Request, email: str = Form(...),
                   fname: str = Form(...),
                   lname: str = Form(...),
                   country: str = Form(...),
