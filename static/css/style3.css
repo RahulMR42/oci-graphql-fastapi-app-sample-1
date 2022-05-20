@@ -187,10 +187,10 @@ a.article:hover {
 
 #div_session_table {
     position:fixed;
-    top: 5%;
-    left: 50%;
+    bottom: 50%;
+    left: 60%;
     width:50em;
-    height:18em;
+    height:25em;
     margin-top: -9em; /*set to a negative number 1/2 of your height*/
     margin-left: -15em; /*set to a negative number 1/2 of your width*/
     border: 1px solid #ccc;
