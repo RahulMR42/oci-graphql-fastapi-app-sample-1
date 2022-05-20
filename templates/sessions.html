@@ -5,20 +5,12 @@
 
 {% block head %}
 {{ super() }}
-
-
-{% endblock %}
-
-{% block content %}
-{{session_table}}
 {% endblock %}
 
 {% block page_content %}
  {% if status == "Success" %}
-
-
        <img src="{{ url_for('static', path='/images/thankyou.png') }}" width=30% height=30%></img>
-       <small>Hello - {{fname}} {{lname}} !! </small><br>
+       <small>Hello - {{fname}} {{lname}} !! <a  href="/login">➡️ Login to explore more </small><br>
 
    <footer>
     <details>

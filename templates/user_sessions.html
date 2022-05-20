@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% set active_page = "twoforms" %}
+{% set active_page = "usersessions" %}
 
 {% block title %}Openworld 2022{% endblock %}
 
@@ -12,8 +12,26 @@
 {% block page_content %}
  {% if status == "Success" %}
 
-       <small>Hello - {{fname}} {{lname}} !! </small><br>
+       <small>Hello - {{fname}} {{lname}} !!  </small><br>
        <img src="{{ url_for('static', path='/images/woow.png') }}" width=60% height=90%></img>
+      <div id="div_session_table">
+      <table>
+          <tr>
+              <th>Sessions</th>
+              <th>Session Details</th>
+              <th>Session Category</th>
+              <th>Session Date</th>
+          </tr>
+      {% for item in all_sessions.data.listSessions %}
+        <tr>
+            <td>{{item.sname}}</td>
+            <td>{{item.sdescription}}</td>
+            <td>{{item.scategory}}</td>
+            <td>{{item.sdate}}</td>
+        </tr>
+       {% endfor %}
+      </table>
+      </div>
        <center><a  href="/">⬅️ Logout</a></center>
 <footer>
     <details>

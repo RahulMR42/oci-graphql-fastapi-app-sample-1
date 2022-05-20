@@ -33,6 +33,7 @@ async def post_login(request:Request,
     if (login_query_result['data']['getAteendees'] == None) :
         status =  "Invalid"
         message = "Invalid credentials,please recheck"
+        print(login_query_result)
         return templates.TemplateResponse('login.html', context={'request': request,'status': status,'message': message,'login_query':login_query})
     elif (login_query_result['data']['getAteendees']['pwd'] != pwd):
         status = "Wrong"
@@ -42,31 +43,43 @@ async def post_login(request:Request,
         status = "Success"
         fname = login_query_result['data']['getAteendees']['fname']
         lname = login_query_result['data']['getAteendees']['lname']
-        scategory="""
+        scategory_long="""
                     query listSessions {
                               sessions (
                                 filter: {
-                                  year: {
-                                    _eq: 2022
+                                  scategory: {
+                                    _like: %OCI%
                                  
                                   },
-                                  session_tag:{
-                                    _eq: "Private"
+                                  sdate:{
+                                    _like: %OCT%
                                   },
                                   _operator: OR
                                 }
                               ) {
                                 sid
                                 sname
+                                sdate
                                 sdescription
                                 scategory
                               }
                             }
         """
-        # session_query_result=gql_object.query(scategory)
-        # print(json.dumps(session_query_result))
+        scategory="""query {
+                        listSessions{
+                        scategory,
+                        sname,
+                        sdescription,
+                        sdate
+                        
+                         }
+                        }
+        """
+        session_query_result=gql_object.query(scategory)
+        all_sessions=session_query_result
+        print(all_sessions)
         return templates.TemplateResponse('user_sessions.html', context={'status':status,'request': request, 'fname': fname,'lname':lname,'mutation_add_attendees':login_query,
-                                                                         'scategory':scategory})
+                                                                         'scategory':scategory_long,'all_sessions':all_sessions})
 
 
 
