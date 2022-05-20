@@ -14,11 +14,13 @@ body {
 footer {
     position: absolute;
     bottom: 0;
+    top: 0;
+    right: 0%;
+    # left: 50%;
     height: 100px;
-    padding-top:50px;
-    background:#6cf;
-}
+    padding-top:90px;
 
+}
 .responsive{
     max-width: 100%;
     height: auto;

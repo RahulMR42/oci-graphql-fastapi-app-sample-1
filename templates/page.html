@@ -15,6 +15,7 @@
             {{data.text|safe}}
             <img src="{{ url_for('static', path='/images/owhome.png') }}" width=100% height=100%></img>
         </div>
+        <center><a  href="/login">➡️ Login</a></center>
     </div>
 </main><!-- /.container -->
 
@@ -26,9 +27,20 @@
 <footer>
     <details>
         <summary>
-            <span class="icon">👇</span>
+            <span class="icon">🌱</span>
         </summary>
-         &nbsp Type : Query , URL : core.graphql : REST Ep: /home
+         <pre style="background-color:#f7f2ee">
+             ----------------------------------------
+             Mode : Static Image Display
+             Type : Query
+             Query :
+             """query{
+                    getSaticUrls(page_title:"%s"){
+                        url
+                        }
+                    }""" %(home)
+             ----------------------------------------
+         </pre>
         </details>
 </footer>
 

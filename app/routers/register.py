@@ -42,4 +42,17 @@ async def post_register(request: Request, email: str = Form(...),
         return templates.TemplateResponse('register.html', context={'request': request, 'status': status,'message':message,'details':details,'mutation_add_attendees':mutation_add_attendees})
     else:
         status = "Success"
-        return templates.TemplateResponse('sessions.html', context={'status':status,'request': request, 'fname': fname,'lname':lname,'mutation_add_attendees':mutation_add_attendees})
+        scategory="""
+                    query {
+                        listSessions{
+                        scategory,
+                        sname
+                         }
+                        }
+        """
+        session_query_result=gql_object.query(scategory)
+        print(json.dumps(session_query_result))
+        session_table='<table>\n<tbody>\n<tr><td>Devops        </td><td>OCI Devops Intro      </td></tr>\n<tr><td>Openworld     </td><td>Openworld-S1          </td></tr>\n<tr><td>AutonomousDB  </td><td>Power of autonomous DB</td></tr>\n<tr><td>AI            </td><td>OCI AI deep view      </td></tr>\n<tr><td>Devops        </td><td>OCI DevSecops         </td></tr>\n<tr><td>Openworld     </td><td>Welcome to openworld  </td></tr>\n<tr><td>Openworld     </td><td>Openworld-S2          </td></tr>\n<tr><td>UserExperience</td><td>Interactive CLI       </td></tr>\n</tbody>\n</table>'
+        return templates.TemplateResponse('sessions.html', context={'status':status,'request': request, 'fname': fname,'lname':lname,
+                                                                    'mutation_add_attendees':mutation_add_attendees,'scategory':scategory,
+                                                                    'session_table':session_table})

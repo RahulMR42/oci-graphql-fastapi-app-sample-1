@@ -9,30 +9,26 @@
 
 {% endblock %}
 
-{% block content %}
-{{session_table}}
-{% endblock %}
-
 {% block page_content %}
  {% if status == "Success" %}
 
-
-       <img src="{{ url_for('static', path='/images/thankyou.png') }}" width=30% height=30%></img>
        <small>Hello - {{fname}} {{lname}} !! </small><br>
-
-   <footer>
+       <img src="{{ url_for('static', path='/images/woow.png') }}" width=60% height=90%></img>
+       <center><a  href="/">⬅️ Logout</a></center>
+<footer>
     <details>
         <summary>
             <span class="icon">🌱</span>
         </summary>
         <pre style="background-color:#f7f2ee">
                 ----------------------------------------
-            Mode : New user addition.
-            Type : Mutation
+            Mode : Login Validation.
+            Type : Query with Filter
             Query :
             {{mutation_add_attendees}}
             Details : {{details}}
             ----------------------------------------
+
             ----------------------------------------
             Mode : Session Details.
             Type : Query with Filter
@@ -47,11 +43,9 @@
 
 
 {% endif %}
-
-{% endblock %}
+    {% endblock %}
 
     {% block scripts %}
     {{ super() }}
 
     {% endblock %}
-

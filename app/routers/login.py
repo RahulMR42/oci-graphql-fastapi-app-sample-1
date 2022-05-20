@@ -42,7 +42,31 @@ async def post_login(request:Request,
         status = "Success"
         fname = login_query_result['data']['getAteendees']['fname']
         lname = login_query_result['data']['getAteendees']['lname']
-        return templates.TemplateResponse('sessions.html', context={'status':status,'request': request, 'fname': fname,'lname':lname,'mutation_add_attendees':login_query})
+        scategory="""
+                    query listSessions {
+                              sessions (
+                                filter: {
+                                  year: {
+                                    _eq: 2022
+                                 
+                                  },
+                                  session_tag:{
+                                    _eq: "Private"
+                                  },
+                                  _operator: OR
+                                }
+                              ) {
+                                sid
+                                sname
+                                sdescription
+                                scategory
+                              }
+                            }
+        """
+        # session_query_result=gql_object.query(scategory)
+        # print(json.dumps(session_query_result))
+        return templates.TemplateResponse('user_sessions.html', context={'status':status,'request': request, 'fname': fname,'lname':lname,'mutation_add_attendees':login_query,
+                                                                         'scategory':scategory})
 
 
 
