@@ -43,16 +43,25 @@ async def post_register(request: Request, email: str = Form(...),
         return templates.TemplateResponse('register.html', context={'request': request, 'status': status,'message':message,'details':details,'mutation_add_attendees':mutation_add_attendees})
     else:
         status = "Success"
-        scategory="""
+        sid="""
                     query {
                         listSessions{
-                        scategory
+                        sid
                         
                          }
                         }
         """
-        session_query_result=gql_object.query(scategory)
-        session_summary=session_query_result['data']['listSessions']
+        session_query_result=gql_object.query(sid)
+        session_ids = session_query_result['data']['listSessions']
+        session_mutation= """mutation add_session{
+                        createAteendees_sessions(input:{mailid:"%s",sessions_ids:"%s"}){
+                        mailid
+                        }}""" %(email,session_ids)
+
+        print(session_mutation)
+        add_attendees_session = gql_object.mutation(session_mutation)
+        session_mutation=session_mutation.split("sessions_ids")[0]  + "sessions_ids:[***]}){}"
+        print(add_attendees_session)
         return templates.TemplateResponse('sessions.html', context={'status':status,'request': request, 'fname': fname,'lname':lname,
-                                                                    'mutation_add_attendees':mutation_add_attendees,'scategory':scategory,
-                                                                    'session_summary':session_summary})
+                                                                    'mutation_add_attendees':mutation_add_attendees,'scategory':sid,
+                                                                    'mutate_attendees_sessions':session_mutation})
