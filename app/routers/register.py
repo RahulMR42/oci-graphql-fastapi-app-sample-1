@@ -1,3 +1,4 @@
+import os
 import json
 from fastapi import Request, APIRouter, Depends,Form
 from fastapi.responses import HTMLResponse
@@ -27,7 +28,7 @@ async def post_register(request: Request, email: str = Form(...),
                   country: str = Form(...),
                   pwd: str = Form(...)
                   ):
-    url = "http://iehh5vzwre6z5kja.rxn.graphql.us-phoenix-1.oci.customer-oci.com/graphql"
+    url = os.environ['graphql_endpoint_url']
     mutation_add_attendees="""mutation{
                                     createAteendees(input:
                                     {fname:"%s",lname:"%s",mailid:"%s",country:"%s",pwd:"%s"})

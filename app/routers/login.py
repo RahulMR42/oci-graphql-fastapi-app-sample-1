@@ -2,7 +2,7 @@ from fastapi import FastAPI, Request, Form, APIRouter
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from app.routers.resources.graphql import graphql
-
+import os
 import json
 
 router = APIRouter()
@@ -19,7 +19,7 @@ async def post_login(request:Request,
                      email: str = Form(...),
                      pwd: str = Form(...)
                      ):
-    url = "http://iehh5vzwre6z5kja.rxn.graphql.us-phoenix-1.oci.customer-oci.com/graphql"
+    url = os.environ['graphql_endpoint_url']
     login_query="""query{
                     getAteendees(mailid:"%s"){
                         fname

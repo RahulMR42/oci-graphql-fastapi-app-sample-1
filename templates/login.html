@@ -22,6 +22,13 @@
     <button type="submit">Submit</button>
 </form>
 
+    {% if not status %}
+    <center>
+        <img src="{{ url_for('static', path='/images/owlogin.png') }}" width=50% height=20%></img>
+    </center>
+
+    {% endif %}
+
     {% if status == "Invalid" %}
     <center>
         <br><small><font color="red">[Invalid]</font> {{message}} .Please re-try. </small><br>

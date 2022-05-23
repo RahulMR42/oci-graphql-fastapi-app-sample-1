@@ -4,6 +4,7 @@ from fastapi.templating import Jinja2Templates
 from app.routers.resources.graphql import graphql
 from dotenv import load_dotenv
 import json
+import os
 load_dotenv()
 
 templates = Jinja2Templates(directory="templates")
@@ -13,7 +14,7 @@ router = APIRouter()
 
 @router.get("/admin", response_class=HTMLResponse)
 async def list_attendees(request: Request):
-     url = "http://iehh5vzwre6z5kja.rxn.graphql.us-phoenix-1.oci.customer-oci.com/graphql"
+     url = os.environ['graphql_endpoint_url']
      gql_object = graphql(url)
      query_for_list_students = """query {listAteendees{fname,lname,mailid,country}}"""
      query_result = gql_object.query(query_for_list_students)
@@ -21,7 +22,7 @@ async def list_attendees(request: Request):
 
 @router.post("/admin", response_class=HTMLResponse)
 async  def admin_query(request: Request, query_text: str = Form(...)):
-     url = "http://iehh5vzwre6z5kja.rxn.graphql.us-phoenix-1.oci.customer-oci.com/graphql"
+     url = os.environ['graphql_endpoint_url']
      gql_object = graphql(url)
      admin_query_result = gql_object.query(f"""{query_text}""")
      print(json.dumps(admin_query_result))
