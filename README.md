@@ -1,4 +1,4 @@
-A sample python FAST API application with OCI Graphql .
+A sample python FAST API application with OCI Graphql(v2.0.0) .
 ----
 
 ![](./static/images/demo2.png)
