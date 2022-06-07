@@ -44,18 +44,25 @@ async def post_login(request:Request,
         fname = login_query_result['data']['getAteendees']['fname']
         lname = login_query_result['data']['getAteendees']['lname']
         scategory_long="""
-                  
-                query listSessions{
-                    listSessions(input: {
-                   
-                  }){
-                        sid
-                        sname
-                        sdate
-                        sdescription
-                        scategory
-                        }
-                }
+                  query listSessions{
+                            listSessions(
+                                input:{
+                                 scategory:{
+                                    _like:"OCI%"
+                                    },
+                                    sdate:{
+                                    _like:"OCT%"
+                                    },
+                                _operator: OR
+                                }
+                                ){
+                                sid
+                                sname
+                                sdate
+                                sdescription
+                                scategory
+                                }
+                            }
         """
         scategory="""query {
                         listSessions{
